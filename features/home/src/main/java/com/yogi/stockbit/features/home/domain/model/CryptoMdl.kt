@@ -6,6 +6,7 @@ package com.yogi.stockbit.features.home.domain.model
  */
 
 data class CryptoMdl(
+    val id: String? = null,
     val title: String? = null,
     val name: String? = null,
     val price: String? = null,

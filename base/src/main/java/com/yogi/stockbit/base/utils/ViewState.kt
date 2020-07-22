@@ -7,6 +7,7 @@ package com.yogi.stockbit.base.utils
 
 data class ViewState<T>(
     val isLoading: Boolean = true,
+    val isRefresh: Boolean = false,
     val isError: Boolean = false,
     val data: T? = null,
     val errorMessage: String? = null

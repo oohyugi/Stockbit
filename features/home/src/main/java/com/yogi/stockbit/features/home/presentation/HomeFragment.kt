@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yogi.stockbit.base.utils.EndlessRecyclerViewScrollListener
 import com.yogi.stockbit.features.home.InitModule
 import com.yogi.stockbit.features.home.R
+import com.yogi.stockbit.features.home.domain.model.CryptoMdl
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -19,6 +20,7 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
 
+    private var listCrypto = mutableListOf<CryptoMdl>()
     private lateinit var mCryptoListAdapter: CryptoListAdapter
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,15 +41,21 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observerCrypto()
         setupListCrypto()
+        initSwipeRefresh()
 
+    }
+
+    private fun initSwipeRefresh() {
+        swipeRefresh?.setOnRefreshListener {
+            homeViewModel.refreshCrypto()
+            scrollListener.resetState()
+
+        }
     }
 
     private fun setupListCrypto() {
         val mLayoutManager = LinearLayoutManager(context)
-        mCryptoListAdapter =
-            CryptoListAdapter(listener = CryptoListAdapter.CryptoListAdapterListener {
-
-            })
+        mCryptoListAdapter = CryptoListAdapter()
         scrollListener = object : EndlessRecyclerViewScrollListener(mLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 homeViewModel.loadMore(page)
@@ -67,15 +75,22 @@ class HomeFragment : Fragment() {
         homeViewModel.apply {
             crypto.observe(viewLifecycleOwner, Observer { result ->
 
-                progressBar.visibility = visibleView(result.isLoading)
+
+                if (result.isRefresh) mCryptoListAdapter.resetList()
+                progressBar.visibility = visibleView(result.isLoading && !swipeRefresh.isRefreshing)
                 errorView.visibility = visibleView(result.isError)
 
-                mCryptoListAdapter.submitList(result.data)
+                result.data?.let {
+                    swipeRefresh?.isRefreshing = false
+                    mCryptoListAdapter.addAndSubmitList(result.data)
 
+
+                }
 
             })
+            loadCrypto(1)
         }
-        homeViewModel.loadCrypto(1)
+
     }
 
 

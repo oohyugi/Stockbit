@@ -12,8 +12,6 @@ import com.yogi.stockbit.features.home.R
 import com.yogi.stockbit.features.home.domain.model.CryptoMdl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 /**
@@ -21,8 +19,8 @@ import kotlinx.coroutines.withContext
  * github: oohyugi
  */
 
-class CryptoListAdapter(val listener: CryptoListAdapterListener) :
-    ListAdapter<CryptoMdl, CryptoListAdapter.ViewHolder>(
+class CryptoListAdapter :
+    ListAdapter<CryptoMdl, RecyclerView.ViewHolder>(
         DiffUtilsCryptoAdapter()
     ) {
 
@@ -31,32 +29,54 @@ class CryptoListAdapter(val listener: CryptoListAdapterListener) :
 
     private var listItem: MutableList<CryptoMdl> = mutableListOf()
     fun addAndSubmitList(list: List<CryptoMdl>?) {
-        adapterScope.launch {
-            list?.let {
-                listItem.addAll(list)
-            }
 
-            withContext(Dispatchers.Main) {
-                submitList(listItem)
+        list?.let {
+            listItem.addAll(list)
+        }
+        if (listItem.isNotEmpty()) submitList(listItem.toMutableList())
+
+
+    }
+
+    fun resetList() {
+        listItem.clear()
+        submitList(null)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        val view: View
+        return when (viewType) {
+            1 -> {
+                view =
+                    LayoutInflater.from(parent.context).inflate(R.layout.item_crypto, parent, false)
+                ViewHolder(view)
+            }
+            else -> {
+                view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.bottom_loading, parent, false)
+                ViewHolderLoader(view)
             }
         }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_crypto, parent, false)
-        )
     }
 
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val data = getItem(position)
+        when (holder.itemViewType) {
+            1 -> (holder as ViewHolder).bind(data)
+            else -> (holder as ViewHolderLoader).bind(data)
+        }
 
-        holder.bind(data, listener)
 
+    }
 
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            currentList.size - 1 -> 2
+            else -> 1
+        }
     }
 
 
@@ -70,8 +90,7 @@ class CryptoListAdapter(val listener: CryptoListAdapterListener) :
 
 
         fun bind(
-            data: CryptoMdl?,
-            listener: CryptoListAdapterListener
+            data: CryptoMdl?
         ) {
 
 
@@ -99,13 +118,22 @@ class CryptoListAdapter(val listener: CryptoListAdapterListener) :
             }
 
 
-            itemView.setOnClickListener {
-                listener.onItemClickListener(data)
-            }
+        }
+
+    }
+
+    inner class ViewHolderLoader(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+
+        fun bind(
+            data: CryptoMdl?
+        ) {
+
 
         }
 
     }
+
 
     class DiffUtilsCryptoAdapter : DiffUtil.ItemCallback<CryptoMdl>() {
         override fun areItemsTheSame(oldItem: CryptoMdl, newItem: CryptoMdl): Boolean {

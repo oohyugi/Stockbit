@@ -17,6 +17,7 @@ private object LibraryVersion {
     const val COIL = "0.9.1"
     const val KOIN = "2.0.1"
     const val K_ANDROID = "0.8.8@aar"
+    const val SWIPE_REFRESH = "1.1.0"
 }
 
 object LibraryDependency {
@@ -50,4 +51,6 @@ object LibraryDependency {
     const val COIL = "io.coil-kt:coil:${LibraryVersion.COIL}"
     const val KOIN = "org.koin:koin-android-viewmodel:${LibraryVersion.KOIN}"
     const val K_ANDROID = "com.pawegio.kandroid:kandroid:${LibraryVersion.K_ANDROID}"
+    const val SWIPE_REFRESH =
+        "androidx.swiperefreshlayout:swiperefreshlayout:${LibraryVersion.SWIPE_REFRESH}"
 }
