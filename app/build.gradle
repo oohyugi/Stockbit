@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
+
+    defaultConfig {
+        applicationId = AndroidConfig.ID
+        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
+        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
+        buildToolsVersion(AndroidConfig.BUILD_TOOLS_VERSION)
+
+        versionCode = AndroidConfig.VERSION_CODE
+        versionName = AndroidConfig.VERSION_NAME
+        testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    dynamicFeatures = [":features:home"]
+}
+
+dependencies {
+    api(project(":base"))
+
+//    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation(LibraryDependency.LOGGING_INTERCEPTOR)
+    api(LibraryDependency.RETROFIT)
+    api(LibraryDependency.RETROFIT_CONVERTER)
+    api(LibraryDependency.RETROFIT_COROUTINE_CONVERTER)
+    api(LibraryDependency.SUPPORT_CONSTRAINT_LAYOUT)
+    api(LibraryDependency.COORDINATOR_LAYOUT)
+    api(LibraryDependency.RECYCLER_VIEW)
+    api(LibraryDependency.MATERIAL)
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
