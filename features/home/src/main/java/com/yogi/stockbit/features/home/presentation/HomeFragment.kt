@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yogi.stockbit.base.utils.EndlessRecyclerViewScrollListener
 import com.yogi.stockbit.features.home.InitModule
 import com.yogi.stockbit.features.home.R
-import com.yogi.stockbit.features.home.domain.model.CryptoMdl
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -19,8 +18,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
-
-    private var listCrypto = mutableListOf<CryptoMdl>()
     private lateinit var mCryptoListAdapter: CryptoListAdapter
     private lateinit var scrollListener: EndlessRecyclerViewScrollListener
     override fun onCreate(savedInstanceState: Bundle?) {
