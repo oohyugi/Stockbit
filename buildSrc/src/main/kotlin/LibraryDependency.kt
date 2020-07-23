@@ -48,6 +48,7 @@ object LibraryDependency {
     const val NAVIGATION_FRAGMENT_KTX =
         "androidx.navigation:navigation-fragment-ktx:${CoreVersion.NAVIGATION}"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${CoreVersion.NAVIGATION}"
+    const val NAVIGATION_DYNAMIC = "androidx.navigation:navigation-dynamic-features-fragment:${CoreVersion.NAVIGATION}"
     const val COIL = "io.coil-kt:coil:${LibraryVersion.COIL}"
     const val KOIN = "org.koin:koin-android-viewmodel:${LibraryVersion.KOIN}"
     const val K_ANDROID = "com.pawegio.kandroid:kandroid:${LibraryVersion.K_ANDROID}"

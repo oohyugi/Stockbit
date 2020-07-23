@@ -19,8 +19,6 @@ internal class HomeViewModel(private val useCase: HomeUseCase) : ViewModel() {
 
 
     fun loadCrypto(page: Int) {
-
-        Log.wtf("page ", "$page")
         viewModelScope.launch {
             val request =
                 useCase.execute(page)
