@@ -6,6 +6,6 @@ package com.yogi.stockbit.watchlist.domain
  */
 
 internal class WatchListUseCase(private val homeRepository: WatchListRepository) {
-    suspend fun execute(page: Int) = homeRepository.getCrypto(page)
+    suspend fun execute(page: Int) = homeRepository.getBtc(page)
 
 }

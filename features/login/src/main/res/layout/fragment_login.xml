@@ -262,6 +262,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/daftar_sekarang"
                     android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="4dp"
                     android:textStyle="bold" />
             </LinearLayout>
 

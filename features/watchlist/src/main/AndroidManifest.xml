@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
+
     package="com.yogi.stockbit.watchlist">
 
     <dist:module
@@ -11,12 +12,13 @@
         </dist:delivery>
         <dist:fusing dist:include="true" />
     </dist:module>
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
+        android:usesCleartextTraffic="true"
 
-    </application>
+        tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon"></application>
 </manifest>

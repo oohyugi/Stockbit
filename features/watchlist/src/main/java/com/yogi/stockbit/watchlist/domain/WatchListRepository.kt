@@ -1,7 +1,7 @@
 package com.yogi.stockbit.watchlist.domain
 
 import com.yogi.stockbit.base.utils.ResultState
-import com.yogi.stockbit.watchlist.domain.model.CryptoMdl
+import com.yogi.stockbit.watchlist.domain.model.BtcMdl
 
 /**
  * Created by yogi on 7/22/2020
@@ -9,5 +9,5 @@ import com.yogi.stockbit.watchlist.domain.model.CryptoMdl
  */
 
 internal interface WatchListRepository {
-    suspend fun getCrypto(page: Int): ResultState<MutableList<CryptoMdl>>
+    suspend fun getBtc(page: Int): ResultState<MutableList<BtcMdl>>
 }

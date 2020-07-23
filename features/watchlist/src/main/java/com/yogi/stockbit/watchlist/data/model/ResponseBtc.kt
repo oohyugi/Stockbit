@@ -1,7 +1,7 @@
 package com.yogi.stockbit.watchlist.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.yogi.stockbit.watchlist.domain.model.CryptoMdl
+import com.yogi.stockbit.watchlist.domain.model.BtcMdl
 
 
 /**
@@ -24,17 +24,17 @@ data class ResponseCrypto(
     val type: Int?
 )
 
-internal fun ResponseCrypto.toListCrypto(): MutableList<CryptoMdl> {
-    val list: MutableList<CryptoMdl> = mutableListOf()
+internal fun ResponseCrypto.toListBtc(): MutableList<BtcMdl> {
+    val list: MutableList<BtcMdl> = mutableListOf()
     data?.forEach {
         list.add(
-            CryptoMdl(
+            BtcMdl(
                 title = it.coinInfo?.name,
                 name = it.coinInfo?.fullName,
-                price = it.dISPLAY?.iDR?.pRICE,
-                changePriceHourDisplay = it.dISPLAY?.iDR?.cHANGEHOUR,
-                changePriceHour = it.rAW?.iDR?.cHANGEHOUR,
-                changePercentHour = it.dISPLAY?.iDR?.cHANGEPCTHOUR
+                price = it.dISPLAY?.usd?.pRICE,
+                changePriceHourDisplay = it.dISPLAY?.usd?.cHANGEHOUR,
+                changePriceHour = it.rAW?.usd?.cHANGEHOUR,
+                changePercentHour = it.dISPLAY?.usd?.cHANGEPCTHOUR
             )
         )
     }
@@ -88,12 +88,16 @@ data class CoinInfo(
 
 data class DISPLAY(
     @SerializedName("IDR")
-    val iDR: IDR?
+    val iDR: IDR?,
+    @SerializedName("USD")
+    val usd: IDR?
 )
 
 data class RAW(
     @SerializedName("IDR")
-    val iDR: IDRX?
+    val iDR: IDRX?,
+    @SerializedName("USD")
+    val usd: IDRX?
 )
 
 data class Rating(

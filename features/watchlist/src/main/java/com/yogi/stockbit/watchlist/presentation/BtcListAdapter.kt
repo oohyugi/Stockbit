@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.yogi.stockbit.watchlist.R
-import com.yogi.stockbit.watchlist.domain.model.CryptoMdl
+import com.yogi.stockbit.watchlist.domain.model.BtcMdl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
@@ -19,16 +19,16 @@ import kotlinx.coroutines.Dispatchers
  * github: oohyugi
  */
 
-class CryptoListAdapter :
-    ListAdapter<CryptoMdl, RecyclerView.ViewHolder>(
+class BtcListAdapter :
+    ListAdapter<BtcMdl, RecyclerView.ViewHolder>(
         DiffUtilsCryptoAdapter()
     ) {
 
     private var adapterScope = CoroutineScope(Dispatchers.Default)
 
 
-    private var listItem: MutableList<CryptoMdl> = mutableListOf()
-    fun addAndSubmitList(list: List<CryptoMdl>?) {
+    private var listItem: MutableList<BtcMdl> = mutableListOf()
+    fun addAndSubmitList(list: List<BtcMdl>?) {
 
         list?.let {
             listItem.addAll(list)
@@ -90,7 +90,7 @@ class CryptoListAdapter :
 
 
         fun bind(
-            data: CryptoMdl?
+            data: BtcMdl?
         ) {
 
 
@@ -126,7 +126,7 @@ class CryptoListAdapter :
 
 
         fun bind(
-            data: CryptoMdl?
+            data: BtcMdl?
         ) {
 
 
@@ -135,20 +135,20 @@ class CryptoListAdapter :
     }
 
 
-    class DiffUtilsCryptoAdapter : DiffUtil.ItemCallback<CryptoMdl>() {
-        override fun areItemsTheSame(oldItem: CryptoMdl, newItem: CryptoMdl): Boolean {
+    class DiffUtilsCryptoAdapter : DiffUtil.ItemCallback<BtcMdl>() {
+        override fun areItemsTheSame(oldItem: BtcMdl, newItem: BtcMdl): Boolean {
             return oldItem.title == newItem.title
         }
 
-        override fun areContentsTheSame(oldItem: CryptoMdl, newItem: CryptoMdl): Boolean {
+        override fun areContentsTheSame(oldItem: BtcMdl, newItem: BtcMdl): Boolean {
             return oldItem == newItem
 
         }
 
     }
 
-    class CryptoListAdapterListener(val clickListener: (item: CryptoMdl?) -> Unit) {
-        fun onItemClickListener(item: CryptoMdl?) = clickListener(item)
+    class CryptoListAdapterListener(val clickListener: (item: BtcMdl?) -> Unit) {
+        fun onItemClickListener(item: BtcMdl?) = clickListener(item)
     }
 
 

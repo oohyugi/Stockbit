@@ -1,6 +1,5 @@
 package com.yogi.stockbit.watchlist.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,14 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.yogi.stockbit.base.utils.ResultState
 import com.yogi.stockbit.base.utils.ViewState
 import com.yogi.stockbit.watchlist.domain.WatchListUseCase
-import com.yogi.stockbit.watchlist.domain.model.CryptoMdl
+import com.yogi.stockbit.watchlist.domain.model.BtcMdl
 import kotlinx.coroutines.launch
 
 internal class WatchListViewModel(private val useCase: WatchListUseCase) : ViewModel() {
 
-
-    private val _crypto = MutableLiveData<ViewState<List<CryptoMdl>>>()
-    val crypto: LiveData<ViewState<List<CryptoMdl>>> = _crypto
+    private val _crypto = MutableLiveData<ViewState<List<BtcMdl>>>()
+    val btc: LiveData<ViewState<List<BtcMdl>>> = _crypto
 
 
     fun loadCrypto(page: Int) {
@@ -49,7 +47,7 @@ internal class WatchListViewModel(private val useCase: WatchListUseCase) : ViewM
 
     fun refreshCrypto() {
         _crypto.value = ViewState(isRefresh = true)
-        loadCrypto(1)
+        loadCrypto(0)
     }
 
 

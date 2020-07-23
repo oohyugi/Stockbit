@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit
  * github: oohyugi
  */
 val LogInterceptor = named("logInterceptor")
+val apiOkHttpClient = named("apiOkhttp")
 val appModule = module {
 
     single<Interceptor>(LogInterceptor) {
@@ -23,12 +24,16 @@ val appModule = module {
         }
     }
 
-    single {
+    single<OkHttpClient>(apiOkHttpClient) {
         OkHttpClient.Builder().addInterceptor(get<Interceptor>(LogInterceptor))
             .pingInterval(30, TimeUnit.SECONDS)
             .readTimeout(1, TimeUnit.MINUTES)
             .connectTimeout(1, TimeUnit.MINUTES).build()
     }
+
+
+
+
 
     fun provideRetrofit(okHttpClient: OkHttpClient, baseUrl: String): Retrofit {
         return Retrofit.Builder()
@@ -39,7 +44,7 @@ val appModule = module {
             .build()
     }
     single {
-        provideRetrofit(get(), "https://min-api.cryptocompare.com/")
+        provideRetrofit(get(apiOkHttpClient), "https://min-api.cryptocompare.com/")
 
     }
 

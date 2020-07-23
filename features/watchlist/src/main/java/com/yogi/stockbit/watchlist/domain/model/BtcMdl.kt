@@ -5,7 +5,7 @@ package com.yogi.stockbit.watchlist.domain.model
  * github: oohyugi
  */
 
-data class CryptoMdl(
+data class BtcMdl(
     val id: String? = null,
     val title: String? = null,
     val name: String? = null,

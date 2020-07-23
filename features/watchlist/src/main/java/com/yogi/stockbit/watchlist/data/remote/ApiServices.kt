@@ -13,7 +13,7 @@ import retrofit2.http.Query
 interface ApiServices {
 
     @GET("data/top/totaltoptiervolfull")
-    suspend fun getCrypto(
+    suspend fun getBtc(
         @Query("limit") limit: Int,
         @Query("tsym") tsym: String,
         @Query("page") page: Int

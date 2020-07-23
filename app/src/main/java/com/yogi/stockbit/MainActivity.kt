@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +26,6 @@ class MainActivity : AppCompatActivity() {
                 nav_view?.visibility = View.VISIBLE
             }
         }
-        nav_view.setupWithNavController(navController)
+//        nav_view.setupWithNavController(navController)
     }
 }
