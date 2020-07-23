@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home_nav_graph"
+        android:id="@+id/watchlist_nav_graph"
         android:icon="@drawable/ic_baseline_star_border_24"
         android:title="@string/watchlist" />
 

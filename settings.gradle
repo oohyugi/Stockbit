@@ -1,5 +1,5 @@
+include ':features:watchlist'
 include ':features:login'
 include ':base'
-include ':features:home'
 include ':app'
 rootProject.name = "Stockbit"
