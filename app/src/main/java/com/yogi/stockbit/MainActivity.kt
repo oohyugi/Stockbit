@@ -20,9 +20,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
         val navController = nav_host_fragment.findNavController()
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
 
