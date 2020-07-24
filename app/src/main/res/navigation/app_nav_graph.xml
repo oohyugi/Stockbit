@@ -3,6 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/app_navigation_graph"
     app:startDestination="@id/login_nav_graph">
-    <include app:graph="@navigation/feature_home_nav_graph" />
-    <include app:graph="@navigation/feature_login_nav_graph" />
+    <include-dynamic
+        app:moduleName="watchlist"
+        android:id="@+id/watchlist_nav_graph"
+        app:graphPackage="com.yogi.stockbit.watchlist"
+        app:graphResName="watchlist_nav_graph" />
+    <include-dynamic
+        app:moduleName="login"
+        android:id="@+id/login_nav_graph"
+        app:graphPackage="com.yogi.stockbit.login"
+        app:graphResName="login_nav_graph"
+        >
+    </include-dynamic>
+
 </navigation>

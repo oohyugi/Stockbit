@@ -31,15 +31,13 @@ android {
         jvmTarget = '1.8'
     }
 
-    dynamicFeatures = [":features:home"]
-    dynamicFeatures = [":features:login"]
+
+    dynamicFeatures = [":features:watchlist",":features:login"]
 }
 
 dependencies {
     api(project(":base"))
-
-//    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
-    implementation(LibraryDependency.LOGGING_INTERCEPTOR)
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     api(LibraryDependency.RETROFIT)
     api(LibraryDependency.RETROFIT_CONVERTER)
     api(LibraryDependency.RETROFIT_COROUTINE_CONVERTER)

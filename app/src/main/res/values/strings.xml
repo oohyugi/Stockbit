@@ -9,4 +9,6 @@
     <string name="search">Search</string>
     <string name="chat">Chat</string>
     <string name="porfolio">Porfolio</string>
+    <string name="data_not_found">Data not found</string>
+    <string name="loginFragment">com.yogi.stockbit.login:id/loginFragment</string>
 </resources>

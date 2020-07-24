@@ -35,25 +35,15 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnLogin?.setOnClickListener {
-            val uri = Uri.parse("features://HomeFragment")
-//            findNavController().navigate(R.id.homeFragment)
-
-//        val graphid = resources.getIdentifier("feature_home_nav_graph","navigation",context?.packageName)
-//            var fragPageId = resources.getIdentifier("homeFragment","id",context?.packageName)
-//            var graph = view.findNavController().getViewModelStoreOwner(fragPageId)
-//
-//            if (graph!=null){
-//                graph.
-//                val destination = NavOptions.Builder()
-//                graph.navigate(null,destination.build())
-//            }
+            findNavController().navigate(R.id.watchlist_nav_graph)
 
 
-//            findNavController().navigate(R.id.action_loginFragment_to_home_nav_graph)
         }
+
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
 
     }
 

@@ -3,228 +3,271 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@android:color/white"
     android:layout_height="match_parent">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/AppTheme.PopupOverlay"
-
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/white"
         app:layout_constraintTop_toTopOf="parent">
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/login"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
-    </Toolbar>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnGoogle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/masuk_dengan_google"
-        android:textColor="@android:color/secondary_text_light"
-        android:textStyle="normal"
+            android:layout_height="wrap_content">
+            <Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/AppTheme.PopupOverlay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        app:cornerRadius="8dp"
-        app:elevation="0dp"
-        android:textSize="@dimen/defaultTextSize"
-        android:layout_marginLeft="@dimen/defaultMargin"
-        android:layout_marginRight="@dimen/defaultMargin"
-        android:layout_marginTop="@dimen/defaultMargin"
+            </Toolbar>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/login"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:icon="@drawable/ic_brands_and_logotypes"
-        app:iconTint="@null"
-        style="?attr/materialButtonOutlinedStyle"
-        app:iconGravity="start"
-        android:paddingStart="24dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textAllCaps="false"
-        tools:ignore="RtlSymmetry" />
-    <com.google.android.material.button.MaterialButton
-        android:textSize="@dimen/defaultTextSize"
-        android:id="@+id/btnFacebook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/masuk_dengan_facebook"
-        android:textStyle="normal"
-        android:textColor="@android:color/secondary_text_light"
-        app:cornerRadius="8dp"
-        app:elevation="0dp"
-        android:layout_marginLeft="@dimen/defaultMargin"
-        android:layout_marginRight="@dimen/defaultMargin"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGoogle"
-        app:icon="@drawable/ic_facebook"
-        app:iconTint="@null"
-        style="?attr/materialButtonOutlinedStyle"
-        app:iconGravity="start"
-       android:paddingStart="24dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textAllCaps="false"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintTop_toBottomOf="@+id/appbar">
 
-<LinearLayout
-    android:id="@+id/lyOr"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintTop_toBottomOf="@+id/btnFacebook"
-    android:orientation="horizontal"
-    android:layout_marginTop="24dp"
-    android:layout_marginLeft="@dimen/defaultMargin"
-    android:layout_marginRight="@dimen/defaultMargin">
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1.5dp"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical"
-        android:background="@color/colorGrey"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/defaultMargin"
-        android:layout_marginRight="@dimen/defaultMargin"
-        android:text="@string/atau"/>
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1.5dp"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical"
-        android:background="@color/colorGrey"/>
-
-
-</LinearLayout>
-
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/lyOr"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="@dimen/defaultMargin"
-        android:layout_marginRight="@dimen/defaultMargin"
-        android:paddingStart="@dimen/defaultMargin"
-        android:inputType="textEmailAddress"
-        android:textSize="14sp"
-        android:hint="@string/username_or_email"
-        android:autofillHints=""
-        tools:ignore="RtlSymmetry" />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tlPassword"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername"
-        android:layout_width="match_parent"
-        app:passwordToggleEnabled="true"
-
-       style="@style/Widget.Design.TextInputLayout"
-        app:hintEnabled="false"
-        app:boxBackgroundMode="none"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/defaultMargin">
 
-            android:textSize="14sp"
-            android:paddingStart="@dimen/defaultMargin"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoogle"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/defaultMargin"
+                android:layout_marginRight="@dimen/defaultMargin"
+                android:paddingStart="24dp"
 
-            android:layout_marginLeft="@dimen/defaultMargin"
-            android:layout_marginRight="@dimen/defaultMargin"
-            android:inputType="textPassword"
-            android:hint="@string/password"
-            tools:ignore="RtlSymmetry" />
-    </com.google.android.material.textfield.TextInputLayout>
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/masuk_dengan_google"
+                android:textAllCaps="false"
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnForgotPassword"
-      android:textColor="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lupa_password"
-        android:textAllCaps="false"
-        android:textSize="@dimen/defaultTextSize"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:layout_marginEnd="@dimen/defaultTextSize"
-        android:backgroundTint="@android:color/transparent"
-        app:elevation="0dp"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlPassword"
-        tools:ignore="UnusedAttribute" />
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="@dimen/defaultTextSize"
+                android:textStyle="normal"
+                app:cornerRadius="8dp"
+                app:elevation="0dp"
+                app:icon="@drawable/ic_brands_and_logotypes"
+                app:iconGravity="start"
+                app:iconTint="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
-       style="@style/Widget.AppCompat.Button.Colored"
-        android:backgroundTint="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:textAllCaps="false"
-        android:textSize="@dimen/defaultTextSize"
-        android:textColor="@android:color/white"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/defaultTextSize"
-        android:layout_marginStart="@dimen/defaultMargin"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFacebook"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/defaultMargin"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/defaultMargin"
+                android:paddingStart="24dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/masuk_dengan_facebook"
+                android:textAllCaps="false"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="@dimen/defaultTextSize"
+                android:textStyle="normal"
+                app:cornerRadius="8dp"
+                app:elevation="0dp"
+                app:icon="@drawable/ic_facebook"
+                app:iconGravity="start"
+                app:iconTint="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnGoogle"
+                tools:ignore="RtlSymmetry" />
 
-        app:elevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnForgotPassword" />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnFinger"
-        style="?attr/materialButtonOutlinedStyle"
+            <LinearLayout
+                android:id="@+id/lyOr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/defaultMargin"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="@dimen/defaultMargin"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/btnFacebook">
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/masuk_dengan_fingerprint"
-        android:textAllCaps="false"
-        app:strokeColor="@color/colorPrimary"
-        app:strokeWidth="1dp"
-        android:textSize="@dimen/defaultTextSize"
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1.5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/colorGrey" />
 
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="@dimen/defaultTextSize"
-        android:layout_marginStart="@dimen/defaultMargin"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/defaultMargin"
+                    android:layout_marginRight="@dimen/defaultMargin"
+                    android:text="@string/atau" />
 
-        app:elevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
-
-    <LinearLayout
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintTop_toBottomOf="@+id/btnFinger"
-        android:layout_marginTop="24dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@android:color/transparent"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:orientation="horizontal"
-        tools:ignore="UnusedAttribute">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/belum_punya_akun"
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1.5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/colorGrey" />
 
 
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/daftar_sekarang"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"/>
-    </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/defaultMargin"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="@dimen/defaultMargin"
+                android:autofillHints=""
+                android:hint="@string/username_or_email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="@dimen/defaultMargin"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/lyOr"
+                tools:ignore="RtlSymmetry" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlPassword"
+                style="@style/Widget.Design.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/etUsername"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="@dimen/defaultMargin"
+                    android:layout_marginRight="@dimen/defaultMargin"
+
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/defaultMargin"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnForgotPassword"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/defaultTextSize"
+                android:backgroundTint="@android:color/transparent"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/lupa_password"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/defaultTextSize"
+                app:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tlPassword"
+                tools:ignore="UnusedAttribute" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/defaultMargin"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/defaultTextSize"
+                android:backgroundTint="@color/colorPrimary"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/defaultTextSize"
+
+                app:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnForgotPassword" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFinger"
+                style="?attr/materialButtonOutlinedStyle"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/defaultMargin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/defaultTextSize"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+
+                android:text="@string/masuk_dengan_fingerprint"
+                android:textAllCaps="false"
+                android:textSize="@dimen/defaultTextSize"
+                app:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+                app:strokeColor="@color/colorPrimary"
+                app:strokeWidth="1dp" />
+
+            <LinearLayout
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@android:color/transparent"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnFinger"
+                tools:ignore="UnusedAttribute">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/belum_punya_akun"
+
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/daftar_sekarang"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="4dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
