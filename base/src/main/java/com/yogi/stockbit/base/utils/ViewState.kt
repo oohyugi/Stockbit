@@ -10,5 +10,7 @@ data class ViewState<T>(
     val isRefresh: Boolean = false,
     val isError: Boolean = false,
     val data: T? = null,
+    val dataRefresh: T? = null,
+
     val errorMessage: String? = null
 )

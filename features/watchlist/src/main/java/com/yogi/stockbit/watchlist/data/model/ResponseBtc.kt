@@ -9,26 +9,27 @@ import com.yogi.stockbit.watchlist.domain.model.BtcMdl
  * github: oohyugi
  */
 
-data class ResponseCrypto(
+data class ResponseBtc(
     @SerializedName("Data")
-    val data: List<Data>?,
+    val data: List<Data>? = null,
     @SerializedName("HasWarning")
-    val hasWarning: Boolean?,
+    val hasWarning: Boolean? = false,
     @SerializedName("Message")
-    val message: String?,
+    val message: String? = null,
     @SerializedName("RateLimit")
-    val rateLimit: RateLimit?,
+    val rateLimit: RateLimit? = null,
     @SerializedName("SponsoredData")
-    val sponsoredData: List<Any>?,
+    val sponsoredData: List<Any>? = null,
     @SerializedName("Type")
-    val type: Int?
+    val type: Int? = null
 )
 
-internal fun ResponseCrypto.toListBtc(): MutableList<BtcMdl> {
+internal fun ResponseBtc.toListBtc(): MutableList<BtcMdl> {
     val list: MutableList<BtcMdl> = mutableListOf()
     data?.forEach {
         list.add(
             BtcMdl(
+                id = it.rAW?.usd?.lASTTRADEID,
                 title = it.coinInfo?.name,
                 name = it.coinInfo?.fullName,
                 price = it.dISPLAY?.usd?.pRICE,

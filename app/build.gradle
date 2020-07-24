@@ -37,7 +37,8 @@ android {
 
 dependencies {
     api(project(":base"))
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+
+    api(LibraryDependency.VECTOR_DRAWABLE)
     api(LibraryDependency.RETROFIT)
     api(LibraryDependency.RETROFIT_CONVERTER)
     api(LibraryDependency.RETROFIT_COROUTINE_CONVERTER)
@@ -47,7 +48,5 @@ dependencies {
     api(LibraryDependency.MATERIAL)
     api(LibraryDependency.SWIPE_REFRESH)
     api(LibraryDependency.NAVIGATION_DYNAMIC)
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
 }

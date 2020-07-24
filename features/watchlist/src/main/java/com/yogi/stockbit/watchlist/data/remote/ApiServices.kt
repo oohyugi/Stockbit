@@ -1,6 +1,7 @@
 package com.yogi.stockbit.watchlist.data.remote
 
-import com.yogi.stockbit.watchlist.data.model.ResponseCrypto
+import com.yogi.stockbit.watchlist.data.model.ResponseBtc
+
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -17,5 +18,5 @@ interface ApiServices {
         @Query("limit") limit: Int,
         @Query("tsym") tsym: String,
         @Query("page") page: Int
-    ): Response<ResponseCrypto>
+    ): Response<ResponseBtc>
 }

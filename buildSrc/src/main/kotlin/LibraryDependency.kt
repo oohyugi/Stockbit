@@ -18,6 +18,7 @@ private object LibraryVersion {
     const val KOIN = "2.0.1"
     const val K_ANDROID = "0.8.8@aar"
     const val SWIPE_REFRESH = "1.1.0"
+    const val VECTOR_DRAWABLE = "1.1.0"
 }
 
 object LibraryDependency {
@@ -48,10 +49,13 @@ object LibraryDependency {
     const val NAVIGATION_FRAGMENT_KTX =
         "androidx.navigation:navigation-fragment-ktx:${CoreVersion.NAVIGATION}"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${CoreVersion.NAVIGATION}"
-    const val NAVIGATION_DYNAMIC = "androidx.navigation:navigation-dynamic-features-fragment:${CoreVersion.NAVIGATION}"
+    const val NAVIGATION_DYNAMIC =
+        "androidx.navigation:navigation-dynamic-features-fragment:${CoreVersion.NAVIGATION}"
     const val COIL = "io.coil-kt:coil:${LibraryVersion.COIL}"
     const val KOIN = "org.koin:koin-android-viewmodel:${LibraryVersion.KOIN}"
     const val K_ANDROID = "com.pawegio.kandroid:kandroid:${LibraryVersion.K_ANDROID}"
     const val SWIPE_REFRESH =
         "androidx.swiperefreshlayout:swiperefreshlayout:${LibraryVersion.SWIPE_REFRESH}"
+    const val VECTOR_DRAWABLE =
+        "androidx.vectordrawable:vectordrawable:${LibraryVersion.VECTOR_DRAWABLE}"
 }

@@ -26,6 +26,18 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation(project(":app"))
+    testImplementation(TestLibraryDependency.COROUTINES_TEST)
+    testImplementation(TestLibraryDependency.JUNIT)
+    testImplementation(TestLibraryDependency.KLUENT)
+    testImplementation(TestLibraryDependency.MOCKITO_INLINE)
+    testImplementation(TestLibraryDependency.MOCKITO_KOTLIN)
+    testImplementation(TestLibraryDependency.ANDROID_X_CORE_TESTING)
+    androidTestImplementation(TestLibraryDependency.EXT_JUNIT)
+    androidTestImplementation(TestLibraryDependency.ESPRESSO_CORE)
+    androidTestImplementation(TestLibraryDependency.MOCKITO_ANDROID)
+
+
+
 
 
 }

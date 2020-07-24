@@ -46,6 +46,10 @@ dependencies {
     api(LibraryDependency.KOIN)
     api(LibraryDependency.LOGGING_INTERCEPTOR)
 
+    implementation(LibraryDependency.KOTLIN)
+    implementation(TestLibraryDependency.JUNIT)
+    implementation(TestLibraryDependency.COROUTINES_TEST)
+
 
 
 }

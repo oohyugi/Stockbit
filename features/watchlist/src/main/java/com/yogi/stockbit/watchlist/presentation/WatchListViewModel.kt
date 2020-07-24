@@ -12,24 +12,34 @@ import kotlinx.coroutines.launch
 
 internal class WatchListViewModel(private val useCase: WatchListUseCase) : ViewModel() {
 
-    private val _crypto = MutableLiveData<ViewState<List<BtcMdl>>>()
-    val btc: LiveData<ViewState<List<BtcMdl>>> = _crypto
+    private val _btcList = MutableLiveData<ViewState<List<BtcMdl>>>()
+    val btcList: LiveData<ViewState<List<BtcMdl>>> = _btcList
 
 
-    fun loadCrypto(page: Int) {
+    fun loadBtc(page: Int, isRefresh: Boolean = false) {
+
+        if (isRefresh) {
+            _btcList.value = ViewState(isRefresh = true)
+
+        }
         viewModelScope.launch {
             val request =
                 useCase.execute(page)
 
             when (request) {
                 is ResultState.Success -> {
-                    _crypto.value =
-                        ViewState(isLoading = false, isError = false, data = request.data)
+                    _btcList.value =
+                        ViewState(
+                            isLoading = false, isError = false, isRefresh = false,
+                            data = if (isRefresh) null else request.data,
+                            dataRefresh = if (isRefresh) request.data else null
+                        )
                 }
                 is ResultState.Error -> {
-                    _crypto.value = ViewState(
+                    _btcList.value = ViewState(
                         isLoading = false,
                         isError = true,
+                        isRefresh = false,
                         errorMessage = request.errorMessage
                     )
 
@@ -42,12 +52,12 @@ internal class WatchListViewModel(private val useCase: WatchListUseCase) : ViewM
 
     fun loadMore(page: Int) {
 
-        loadCrypto(page)
+        loadBtc(page)
     }
 
-    fun refreshCrypto() {
-        _crypto.value = ViewState(isRefresh = true)
-        loadCrypto(0)
+    fun refreshBtc() {
+
+        loadBtc(0, true)
     }
 
 

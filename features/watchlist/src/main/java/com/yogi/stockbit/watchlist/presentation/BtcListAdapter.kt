@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.yogi.stockbit.watchlist.R
@@ -21,7 +20,7 @@ import kotlinx.coroutines.Dispatchers
 
 class BtcListAdapter :
     ListAdapter<BtcMdl, RecyclerView.ViewHolder>(
-        DiffUtilsCryptoAdapter()
+        BtcMdl.DiffCallback
     ) {
 
     private var adapterScope = CoroutineScope(Dispatchers.Default)
@@ -32,15 +31,20 @@ class BtcListAdapter :
 
         list?.let {
             listItem.addAll(list)
+            submitList(listItem.toMutableList())
         }
-        if (listItem.isNotEmpty()) submitList(listItem.toMutableList())
 
 
     }
 
-    fun resetList() {
-        listItem.clear()
-        submitList(null)
+    fun refreshData(list: List<BtcMdl>) {
+
+        for (i in list.indices) {
+            listItem[i] = list[i]
+        }
+        submitList(listItem.toMutableList())
+      
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -134,22 +138,6 @@ class BtcListAdapter :
 
     }
 
-
-    class DiffUtilsCryptoAdapter : DiffUtil.ItemCallback<BtcMdl>() {
-        override fun areItemsTheSame(oldItem: BtcMdl, newItem: BtcMdl): Boolean {
-            return oldItem.title == newItem.title
-        }
-
-        override fun areContentsTheSame(oldItem: BtcMdl, newItem: BtcMdl): Boolean {
-            return oldItem == newItem
-
-        }
-
-    }
-
-    class CryptoListAdapterListener(val clickListener: (item: BtcMdl?) -> Unit) {
-        fun onItemClickListener(item: BtcMdl?) = clickListener(item)
-    }
 
 
 }

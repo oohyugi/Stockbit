@@ -1,6 +1,7 @@
 package com.yogi.stockbit.watchlist.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,8 +41,8 @@ class WatchListFragment : Fragment() {
     }
     private fun initSwipeRefresh() {
         swipeRefresh?.setOnRefreshListener {
-            viewModel.refreshCrypto()
-            scrollListener.resetState()
+            viewModel.refreshBtc()
+
 
         }
     }
@@ -66,28 +67,39 @@ class WatchListFragment : Fragment() {
 
     private fun observerCrypto() {
         viewModel.apply {
-            btc.observe(viewLifecycleOwner, Observer { result ->
+            btcList.observe(viewLifecycleOwner, Observer { result ->
 
 
-                if (result.isRefresh) mBtcListAdapter.resetList()
                 progressBar.visibility = visibleView(result.isLoading && !swipeRefresh.isRefreshing)
-                errorView.visibility = visibleView(result.isError)
 
+                showError(result.isError, result.errorMessage)
+                swipeRefresh?.isRefreshing = result.isRefresh
+
+                Log.wtf("isRefresh", result.isRefresh.toString())
+                result.dataRefresh?.let {
+                    scrollListener.resetState()
+                    mBtcListAdapter.refreshData(it)
+                    rvCrypto?.smoothScrollToPosition(0)
+                }
                 result.data?.let {
-                    swipeRefresh?.isRefreshing = false
                     mBtcListAdapter.addAndSubmitList(result.data)
-
-
                 }
 
+
             })
-            loadCrypto(0)
+            loadBtc(0)
         }
 
     }
 
+    private fun showError(isError: Boolean, errorMessage: String?) {
+        errorView?.visibility = visibleView(isError)
+        tvErrorMessage?.text = errorMessage ?: "Data not found"
+    }
+
 
     private fun visibleView(loading: Boolean): Int {
+
         return if (loading) View.VISIBLE else View.GONE
     }
 
