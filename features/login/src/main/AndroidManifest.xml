@@ -5,11 +5,9 @@
 
     <dist:module
         dist:instant="false"
+        dist:onDemand="false"
         dist:title="Login">
-        <dist:delivery>
-            <dist:on-demand />
-        </dist:delivery>
-        <dist:fusing dist:include="true" />
+        <dist:fusing dist:include="false" />
     </dist:module>
     <application
         android:allowBackup="true"
