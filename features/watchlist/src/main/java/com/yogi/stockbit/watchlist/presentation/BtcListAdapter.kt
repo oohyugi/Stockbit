@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.yogi.stockbit.watchlist.R
 import com.yogi.stockbit.watchlist.domain.model.BtcMdl
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 
 
 /**
@@ -23,8 +21,7 @@ class BtcListAdapter :
         BtcMdl.DiffCallback
     ) {
 
-    private var adapterScope = CoroutineScope(Dispatchers.Default)
-
+  private var isLoading = true
 
     private var listItem: MutableList<BtcMdl> = mutableListOf()
     fun addAndSubmitList(list: List<BtcMdl>?) {
@@ -39,11 +36,16 @@ class BtcListAdapter :
 
     fun refreshData(list: List<BtcMdl>) {
 
-        for (i in list.indices) {
-            listItem[i] = list[i]
+        if (listItem.isNotEmpty()) {
+            for (i in list.indices) {
+                listItem[i] = list[i]
+            }
+        } else {
+            listItem.addAll(list)
         }
+
         submitList(listItem.toMutableList())
-      
+
 
     }
 
@@ -70,17 +72,23 @@ class BtcListAdapter :
         val data = getItem(position)
         when (holder.itemViewType) {
             1 -> (holder as ViewHolder).bind(data)
-            else -> (holder as ViewHolderLoader).bind(data)
+            else -> (holder as ViewHolderLoader).bind()
         }
 
 
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            currentList.size - 1 -> 2
-            else -> 1
+        return if (position == currentList.size - 1 && isLoading) {
+            2
+        } else {
+            1
         }
+
+    }
+
+    fun setIsLoading(isLoading: Boolean) {
+        this.isLoading = isLoading
     }
 
 
@@ -127,14 +135,7 @@ class BtcListAdapter :
     }
 
     inner class ViewHolderLoader(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-
-        fun bind(
-            data: BtcMdl?
-        ) {
-
-
-        }
+        fun bind() {}
 
     }
 

@@ -53,6 +53,7 @@ class WatchListFragment : Fragment() {
         scrollListener = object : EndlessRecyclerViewScrollListener(mLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 viewModel.loadMore(page)
+                mBtcListAdapter.setIsLoading(true)
 
             }
 
@@ -95,6 +96,7 @@ class WatchListFragment : Fragment() {
     private fun showError(isError: Boolean, errorMessage: String?) {
         errorView?.visibility = visibleView(isError)
         tvErrorMessage?.text = errorMessage ?: "Data not found"
+        mBtcListAdapter.setIsLoading(false)
     }
 
 

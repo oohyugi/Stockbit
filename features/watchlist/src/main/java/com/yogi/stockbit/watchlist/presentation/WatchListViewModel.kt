@@ -1,5 +1,6 @@
 package com.yogi.stockbit.watchlist.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,7 @@ internal class WatchListViewModel(private val useCase: WatchListUseCase) : ViewM
 
     fun loadBtc(page: Int, isRefresh: Boolean = false) {
 
+        Log.wtf("page", page.toString())
         if (isRefresh) {
             _btcList.value = ViewState(isRefresh = true)
 

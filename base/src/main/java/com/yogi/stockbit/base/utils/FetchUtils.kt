@@ -23,5 +23,7 @@ suspend fun <T : Any> fetchState(call: suspend () -> ResultState<T>): ResultStat
 }
 
 fun handleConnectionError(e: ConnectException): String? = e.message
-fun handleExceptionError(e: Exception): String? = e.message
+fun handleExceptionError(e: Exception): String? =
+    "Something when wrong with server or your internet connection"
+
 fun handleEThrowableError(e: Throwable): String? = e.message
