@@ -37,8 +37,7 @@ android {
 
 dependencies {
     api(project(":base"))
-    implementation project(path: ':features:home')
-    implementation project(path: ':features:login')
+
 //    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation(LibraryDependency.LOGGING_INTERCEPTOR)
     api(LibraryDependency.RETROFIT)
