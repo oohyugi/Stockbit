@@ -1,6 +1,7 @@
 package com.yogi.stockbit
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.yogi.stockbit.base.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -44,7 +45,7 @@ val appModule = module {
             .build()
     }
     single {
-        provideRetrofit(get(apiOkHttpClient), "https://min-api.cryptocompare.com/")
+        provideRetrofit(get(apiOkHttpClient), BuildConfig.BASE_URL)
 
     }
 
