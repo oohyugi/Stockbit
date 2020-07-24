@@ -1,8 +1,5 @@
 
-<h1 align="center">Stockbit</h1>
-
-
-## Preview
+## Stockbit
 
 ### Screenshot
 
@@ -22,12 +19,12 @@ Modular + MVVM
 ### Libraries
 
 
-- [x] LiveData
-- [x] ViewModel
-- [x] Coroutines
-- [x] Retrofit
-- [x] Koin
-- [x] Jetpack Navigation
-- [x] Etc
+- LiveData
+- ViewModel
+- Coroutines
+- Retrofit
+- Koin
+- Jetpack Navigation
+- Etc
 
 
