@@ -8,7 +8,7 @@
         dist:instant="false"
         dist:onDemand="false"
         dist:title="WatchList">
-        <dist:fusing dist:include="false" />
+        <dist:fusing dist:include="true" />
     </dist:module>
 
 
